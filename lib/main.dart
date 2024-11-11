@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterblocstudey/blocstudy2/page/blocpage2.dart';
 
 import 'Pages/quotepage.dart';
 
@@ -17,7 +18,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Quotepage(),
+      home: const Page2()
+      // Quotepage(),
     );
   }
 }
