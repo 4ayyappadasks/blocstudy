@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutterblocstudey/Pages/Widgets/Custombutton.dart';
-import 'package:flutterblocstudey/Pages/Widgets/Errorwidget.dart';
-import 'package:flutterblocstudey/Pages/Widgets/Quoteloadedwidet.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutterblocstudey/QuoteBloc/quotbloc_bloc.dart';
+import '../QuoteBloc/quotbloc_bloc.dart';
+import 'Widgets/Custombutton.dart';
+import 'Widgets/Errorwidget.dart';
+import 'Widgets/Quoteloadedwidet.dart';
 
 // class Quotepageloade extends StatelessWidget {
 //   const Quotepageloade({super.key});

@@ -1,26 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:flutterblocstudey/blocstudy2/page/blocpage2.dart';
+import 'package:provider/provider.dart';
 
-import 'Pages/quotepage.dart';
+import 'bloclib/application/core/Services/theme_services.dart';
+import 'bloclib/application/features/post/post_page.dart';
+import 'bloclib/theme.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+    create: (context) => ThemeServiceProvider(),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const Page2()
-      // Quotepage(),
-    );
+    return Consumer<ThemeServiceProvider>(
+        builder: (context, themeService, child) {
+      return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          themeMode:
+              themeService.isDarkModeOn ? ThemeMode.dark : ThemeMode.light,
+          title: 'Flutter Demo',
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+          home: PostPage()
+          //     Page2()
+          // // Quotepage(),
+          );
+    });
   }
 }
-
