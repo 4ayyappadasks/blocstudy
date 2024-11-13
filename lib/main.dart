@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterblocstudey/bloclib2/application/features/MockApi/page/MockApi_page1.dart';
 import 'package:provider/provider.dart';
 
 import 'bloclib/application/core/Services/theme_services.dart';
@@ -26,7 +27,8 @@ class MyApp extends StatelessWidget {
           title: 'Flutter Demo',
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
-          home: PostPage()
+          home:MockApiPage1()
+          // PostPage()
           //     Page2()
           // // Quotepage(),
           );

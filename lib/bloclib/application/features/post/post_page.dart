@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterblocstudey/bloclib/application/features/post/post_bloc/postloadbloc_bloc.dart';
+import 'package:flutterblocstudey/bloclib2/application/features/MockApi/page/MockApi_page1.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/Services/theme_services.dart';
@@ -15,6 +16,9 @@ class PostPage extends StatelessWidget {
       create: (context) => PostloadblocBloc(),
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => MockApiPage1(),));
+          }, icon: Icon(Icons.arrow_back_rounded)),
           title: Text(
             "PostApp using Bloc",
             style: themedata.textTheme.titleMedium,
