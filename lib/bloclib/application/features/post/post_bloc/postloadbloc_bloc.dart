@@ -15,6 +15,7 @@ class PostloadblocBloc extends Bloc<PostloadblocEvent, PostloadblocState> {
   PostloadblocBloc() : super(PostloadblocInitial()) {
     on<PostloadedEvent>((event, emit) async {
       print("bloc initialized");
+      emit(Postloading());
       try {
         final post = await PostUseCases().GetPOstFromDataSources();
         emit(Postloaded(post: post));

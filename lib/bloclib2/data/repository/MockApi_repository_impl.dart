@@ -7,7 +7,7 @@ class MockApiRepositoryImpl implements MockApiRepositories
   MockupApiDatasource mockupApiDatasource = MockupApiDatSourceimpl();
 
   @override
-  Future<List<MockApiEnities>> getMockApidataFromDataSiurce() async{
+  Future<List<MockApiEnities>> getMockApidataFromDataSource() async{
     final post = mockupApiDatasource.GetdatafromAPi();
     return post;
   }
