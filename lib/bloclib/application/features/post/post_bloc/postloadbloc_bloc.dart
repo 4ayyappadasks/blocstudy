@@ -14,7 +14,7 @@ part 'postloadbloc_state.dart';
 class PostloadblocBloc extends Bloc<PostloadblocEvent, PostloadblocState> {
   PostloadblocBloc() : super(PostloadblocInitial()) {
     on<PostloadedEvent>((event, emit) async {
-      print("bloc initialized");
+      print("Dummyjsonipage initialized");
       emit(Postloading());
       try {
         final post = await PostUseCases().GetPOstFromDataSources();

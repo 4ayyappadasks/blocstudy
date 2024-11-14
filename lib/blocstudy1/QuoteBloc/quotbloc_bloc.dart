@@ -9,7 +9,7 @@ class QuotblocBloc extends Bloc<QuotblocEvent, QuotblocState> {
   QuotblocBloc() : super(QuotblocInitial()) {
     on<RequestQuote>((event, emit) async {
       emit(QuoteLoading());
-      print("bloc is initially triggered");
+      print("Dummyjsonipage is initially triggered");
       await Future.delayed(
         Duration(seconds: 3),
         () {

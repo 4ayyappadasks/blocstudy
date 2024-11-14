@@ -13,7 +13,7 @@ part 'mock_api_state.dart';
 class MockApiBloc extends Bloc<MockApiEvent, MockApiState> {
   MockApiBloc() : super(MockApiInitial()) {
     on<LoadMockApiEvent1>((event, emit) async {
-      log("bloc is initialized");
+      log("Dummyjsonipage is initialized");
       emit(MockApiLoading());
       print("data is loading");
       try {
@@ -21,7 +21,7 @@ class MockApiBloc extends Bloc<MockApiEvent, MockApiState> {
         emit(MockApiLoaded(data: MockApidata));
       } catch (e) {
         emit(MockApierror(errormsg: "${e}"));
-        throw Exception("error in bloc : ${e}");
+        throw Exception("error in Dummyjsonipage : ${e}");
       }
     });
   }
