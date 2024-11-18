@@ -1,11 +1,11 @@
 import 'package:equatable/equatable.dart';
 
-class DummyJsonModel extends Equatable{
+class Try1Entity extends Equatable{
   int success;
   String message;
   List<Datum> data;
 
-  DummyJsonModel({
+  Try1Entity({
     required this.success,
     required this.message,
     required this.data,
@@ -19,7 +19,7 @@ class DummyJsonModel extends Equatable{
 
 }
 
-class Datum extends Equatable{
+class Datum extends Equatable {
   DateTime createdAt;
   String name;
   String avatar;
@@ -32,8 +32,20 @@ class Datum extends Equatable{
     required this.id,
   });
 
-  @override
-  // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
+  factory Datum.fromJson(Map<String, dynamic> json) {
+    return Datum(
+      createdAt: DateTime.parse(json["createdAt"]),
+      name: json["name"],
+      avatar: json["avatar"],
+      id: json["id"],
+    );
+  }
 
+  @override
+  List<Object?> get props => [
+    createdAt,
+    name,
+    avatar,
+    id,
+  ];
 }
