@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
           title: 'Flutter Demo',
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
-          home:Userdetails()
+          home:UserDetails()
           // try1page()
           // Dummypaged()
           // MockApiPage1()
