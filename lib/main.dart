@@ -3,6 +3,7 @@ import 'package:flutterblocstudey/bloclib2/application/features/MockApi/page/Moc
 import 'package:flutterblocstudey/bloclib3/application/Dummyjsonipage/page/dummypage.dart';
 import 'package:flutterblocstudey/bloclib4/application/page.dart';
 import 'package:flutterblocstudey/bloclib5/application/page/userdetails.dart';
+import 'package:flutterblocstudey/blocpost/application/page/postpage.dart';
 import 'package:provider/provider.dart';
 
 import 'bloclib/application/core/Services/theme_services.dart';
@@ -30,7 +31,8 @@ class MyApp extends StatelessWidget {
           title: 'Flutter Demo',
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
-          home:UserDetails()
+          home:const PostPage1()
+          // UserDetails()
           // try1page()
           // Dummypaged()
           // MockApiPage1()
