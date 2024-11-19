@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
           title: 'Flutter Demo',
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
-          home:const PostPage1()
+          home:const PostPage1(id: 1,)
           // UserDetails()
           // try1page()
           // Dummypaged()

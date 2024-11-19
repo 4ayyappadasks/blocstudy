@@ -6,7 +6,7 @@ import "package:http/http.dart" as http;
 abstract class UserDetailsDataSource{
   Future<UserdetailsModel> FetchdatafromApi();
 }
-class UserDetailsDataSourceImpl extends UserDetailsDataSource{
+class UserDetailsDataSourceImpl implements UserDetailsDataSource{
   @override
   Future<UserdetailsModel> FetchdatafromApi() async{
     try{
