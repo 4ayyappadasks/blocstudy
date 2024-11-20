@@ -4,6 +4,7 @@ import 'package:flutterblocstudey/bloclib3/application/Dummyjsonipage/page/dummy
 import 'package:flutterblocstudey/bloclib4/application/page.dart';
 import 'package:flutterblocstudey/bloclib5/application/page/userdetails.dart';
 import 'package:flutterblocstudey/blocpost/application/page/postpage.dart';
+import 'package:flutterblocstudey/blocpost2/application/page/addandlistpost.dart';
 import 'package:provider/provider.dart';
 
 import 'bloclib/application/core/Services/theme_services.dart';
@@ -13,15 +14,18 @@ import 'bloclib/theme.dart';
 void main() {
   runApp(ChangeNotifierProvider(
     create: (context) => ThemeServiceProvider(),
-    child: const MyApp(),
+    child:  MyApp(),
   ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+   MyApp({super.key});
+ static var height = 0.0;
+  static var width = 0.0;
   @override
   Widget build(BuildContext context) {
+    height= MediaQuery.of(context).size.height;
+    width= MediaQuery.of(context).size.width;
     return Consumer<ThemeServiceProvider>(
         builder: (context, themeService, child) {
       return MaterialApp(
@@ -31,7 +35,8 @@ class MyApp extends StatelessWidget {
           title: 'Flutter Demo',
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
-          home:const PostPage1(id: 1,)
+          home:const Addandlistpost()
+          // PostPage1(id: 1,)
           // UserDetails()
           // try1page()
           // Dummypaged()

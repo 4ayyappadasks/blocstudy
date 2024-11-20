@@ -10,9 +10,9 @@ part 'try1_state.dart';
 class Try1Bloc extends Bloc<Try1Event, Try1State> {
   Try1Bloc() : super(Try1Initial()) {
     on<Loadapievent>((event, emit) async{
-      print("bloc is initialized");
+      print("blocApi is initialized");
       emit(Try1loaidng());
-      print("bloc is loading");
+      print("blocApi is loading");
       try{
         final loaddata = await Try1UseCases().GetDataFromDataSource();
         emit(Try1loaded(try1entity: loaddata));

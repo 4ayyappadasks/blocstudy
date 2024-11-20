@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterblocstudey/blocpost/application/bloc/postbloc_bloc.dart';
+import 'package:flutterblocstudey/main.dart';
 
 class PostPage1 extends StatelessWidget {
   const PostPage1({super.key, required this.id});
@@ -8,17 +9,24 @@ class PostPage1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: BlocProvider(
-        create: (context) {
-          final bloc = PostblocBloc(id: id);
-          bloc.add(PostblocApicallEvent());
-          return bloc;
-        },
-        child: Scaffold(
-          body: Container(
-            height: double.infinity,
-            width: double.infinity,
+    return BlocProvider(
+      create: (context) {
+        final bloc = PostblocBloc(id: id);
+        bloc.add(PostblocApicallEvent());
+        return bloc;
+      },
+      child: Scaffold(
+    body: BlocBuilder<PostblocBloc, PostblocState>(
+  builder: (context, state) {
+    return RefreshIndicator(
+      onRefresh: () async{
+        context.read<PostblocBloc>().add(PostblocApicallEvent());
+      },
+      child: ListView(
+        children: [
+          Container(
+            height: MyApp.height,
+            width: MyApp.width,
             decoration: const BoxDecoration(
               gradient: LinearGradient(
                 colors: [Color(0xFFFACCCC), Color(0xFFFFF5F5), Color(0xFFFACCCC)],
@@ -46,8 +54,13 @@ class PostPage1 extends StatelessWidget {
               ),
             ),
           ),
-        ),
+        ],
       ),
+    );
+  },
+),
+        )
+
     );
   }
 }

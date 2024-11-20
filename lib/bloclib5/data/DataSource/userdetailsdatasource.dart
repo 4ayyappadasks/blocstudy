@@ -25,7 +25,7 @@ class UserDetailsDataSourceImpl implements UserDetailsDataSource{
     }
     catch(e)
     {
-      throw Exception("error in apicall ${e}");
+      throw Exception("error in api call $e");
     }
   }
 }
