@@ -20,14 +20,6 @@ class post2Bloc extends Bloc<post2Event, post2State> {
         final data = await Getmethodusecases().Getdatafromdatasource();
         emit(post2GETLoaded(getmethodentity: data));
 
-        // await Future.delayed(Duration(seconds: 5),() async{
-        //   emit(post2Loading());
-        //   print("loading 2");
-        //   final datas = await Getmethodusecases().Getdatafromdatasource();
-        //   emit(post2GETLoaded(getmethodentity: datas));
-        //   print("loaded 2");
-        // },);
-
       } catch (e) {
         emit(post2Error(ermsg: e.toString()));
       }
@@ -41,13 +33,11 @@ class post2Bloc extends Bloc<post2Event, post2State> {
         final data = await PostmethodUsecases(tittle: event.tittle).getdatafromdatasource();
         emit(post2POSTLoaded(postmethodentity: data));
 
-        // await Future.delayed(Duration(seconds: 5),() async{
-        //   emit(post2Loading());
-        //   print("loading 2");
-        //   final datas = await Getmethodusecases().Getdatafromdatasource();
-        //   emit(post2GETLoaded(getmethodentity: datas));
-        //   print("loaded 2");
-        // },);
+          emit(post2Loading());
+          print("loading 2");
+          final datas = await Getmethodusecases().Getdatafromdatasource();
+          emit(post2GETLoaded(getmethodentity: datas));
+          print("loaded 2");
 
       } catch (e) {
         emit(post2Error(ermsg: e.toString()));

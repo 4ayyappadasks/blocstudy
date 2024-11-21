@@ -17,10 +17,10 @@ class GetmehodDataSourceImpl implements GetmethodDataSource{
       {
         log("response : ${response.body}");
         return Getmethodmodel.fromJson(json.decode(response.body));
-
       }
       else
         {
+          log("response : ${response.body}");
           throw Exception("error in response status code : ${response.body}");
         }
     }catch(e){

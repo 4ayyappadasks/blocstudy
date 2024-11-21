@@ -54,103 +54,54 @@ class Addandlistpost extends StatelessWidget {
                     ),
                     // Button placed inside the body
                     SliverToBoxAdapter(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            showModalBottomSheet(
-                              context: context,
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.vertical(
-                                  top: Radius.circular(20),
+                      child: BlocProvider(
+                        create: (context) => post2Bloc(),
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Container(
+                            color: Colors.white,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Text(
+                                  'Add a New Post',
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
                                 ),
-                              ),
-                              builder: (context) {
-                                return BlocProvider(
-                                  create: (context) => post2Bloc(),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(16.0),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        const Text(
-                                          'Add a New Post',
-                                          style: TextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        const SizedBox(height: 10),
-                                        TextField(
-                                          controller: tittle,
-                                          decoration: const InputDecoration(
-                                            labelText: 'Title',
-                                            border: OutlineInputBorder(),
-                                          ),
-                                          onChanged: (value) {
-                                            tittle.text = value.toString();
-                                            print(tittle.text);
-                                          },
-                                        ),
-                                        const SizedBox(height: 10),
-                                        BlocBuilder<post2Bloc, post2State>(
-                                          builder: (context, state) {
-                                            if (state is post2Loading) {
-                                              return const Center(
-                                                child: CircularProgressIndicator(),
-                                              );
-                                            } else if (state is post2POSTLoaded) {
-                                              WidgetsBinding.instance.addPostFrameCallback((_) {
-                                                Navigator.pop(context);
-                                                tittle.clear(); // Clear the text field after post
-                                              });
-                                              return const Center(
-                                                child: Text('Post submitted successfully!'),
-                                              );
-                                            } else if (state is post2Error) {
-                                              return ElevatedButton(
-                                                onPressed: () {
-                                                  final titleText = tittle.text.trim();
-                                                  if (titleText.isNotEmpty) {
-                                                    context.read<post2Bloc>().add(
-                                                        Postmethodevent(tittle: titleText));
-                                                  } else {
-                                                    ScaffoldMessenger.of(context)
-                                                        .showSnackBar(
-                                                      const SnackBar(
-                                                          content: Text("Title cannot be empty")),
-                                                    );
-                                                  }
-                                                },
-                                                child: Text('Error: ${state.ermsg}'),
-                                              );
-                                            } else {
-                                              return ElevatedButton(
-                                                onPressed: () {
-                                                  final titleText = tittle.text.trim();
-                                                  if (titleText.isNotEmpty) {
-                                                    context.read<post2Bloc>().add(
-                                                        Postmethodevent(tittle: titleText));
-                                                  } else {
-                                                    ScaffoldMessenger.of(context)
-                                                        .showSnackBar(
-                                                      const SnackBar(
-                                                          content: Text("Title cannot be empty")),
-                                                    );
-                                                  }
-                                                },
-                                                child: const Text('Submit'),
-                                              );
-                                            }
-                                          },
-                                        ),
-                                      ],
-                                    ),
+                                const SizedBox(height: 10),
+                                TextField(
+                                  controller: tittle,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Title',
+                                    border: OutlineInputBorder(),
                                   ),
-                                );
-                              },
-                            );
-                          },
-                          child: const Icon(Icons.add),
+                                  onChanged: (value) {
+                                    tittle.text = value.toString();
+                                    print(tittle.text);
+                                  },
+                                ),
+                                const SizedBox(height: 10),
+                                ElevatedButton(
+                                    onPressed: () {
+                                      final titleText = tittle.text.trim();
+                                      if (titleText.isNotEmpty) {
+                                        context.read<post2Bloc>().add(
+                                            Postmethodevent(tittle: titleText));
+                                      } else {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          const SnackBar(
+                                              content: Text(
+                                                  "Title cannot be empty")),
+                                        );
+                                      }
+                                      tittle.clear();
+                                    },
+                                    child: Text("submit"))
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -165,15 +116,17 @@ class Addandlistpost extends StatelessWidget {
                         } else if (state is post2Loading) {
                           return const SliverToBoxAdapter(
                             child: Center(
-                              child: CircularProgressIndicator(),
+                              child:
+                                  CircularProgressIndicator(color: Colors.red),
                             ),
                           );
                         } else if (state is post2GETLoaded) {
                           return SliverList(
                             delegate: SliverChildBuilderDelegate(
-                                  (context, index) {
+                              (context, index) {
                                 return Card(
-                                  margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 5),
                                   elevation: 4,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(12),
@@ -187,17 +140,22 @@ class Addandlistpost extends StatelessWidget {
                                           backgroundColor: Colors.blueAccent,
                                           child: Text(
                                             "${state.getmethodentity.posts[index].id}",
-                                            style: const TextStyle(color: Colors.white),
+                                            style: const TextStyle(
+                                                color: Colors.white),
                                           ),
                                         ),
                                         const SizedBox(width: 10),
                                         Expanded(
                                           child: Text(
-                                            state.getmethodentity.posts[index].title,
-                                            style: Theme.of(context).textTheme.titleMedium,
+                                            state.getmethodentity.posts[index]
+                                                .title,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleMedium,
                                           ),
                                         ),
-                                        const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
+                                        const Icon(Icons.arrow_forward_ios,
+                                            size: 16, color: Colors.grey),
                                       ],
                                     ),
                                   ),
@@ -212,15 +170,16 @@ class Addandlistpost extends StatelessWidget {
                               child: Text(state.ermsg),
                             ),
                           );
-                        } else {
-                          return const SliverToBoxAdapter(
-                            child: Center(
-                              child: Text("Unknown state"),
-                            ),
-                          );
                         }
+
+                        // Add a fallback widget in case none of the conditions match
+                        return const SliverToBoxAdapter(
+                          child: SizedBox(
+                            child: Center(child: Text("data")),
+                          ), // Or any default widget like a Container()
+                        );
                       },
-                    ),
+                    )
                   ],
                 ),
               );
