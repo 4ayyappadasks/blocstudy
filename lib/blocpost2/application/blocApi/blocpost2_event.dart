@@ -12,7 +12,9 @@ class Getmethodevent extends post2Event{
   List<Object?> get props => [];
 }
 class Postmethodevent extends post2Event{
+  Postmethodevent({required this.tittle});
+  String tittle;
   @override
   // TODO: implement props
-  List<Object?> get props => [];
+  List<Object?> get props => [tittle];
 }

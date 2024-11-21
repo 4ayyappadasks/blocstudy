@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterblocstudey/blocpost2/application/blocApi/blocpost2_bloc.dart';
 
 class Addandlistpost extends StatelessWidget {
-  const Addandlistpost({super.key});
+  Addandlistpost({super.key});
+
+  TextEditingController tittle = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,41 +31,50 @@ class Addandlistpost extends StatelessWidget {
                   ),
                 ),
                 builder: (context) {
-                  return Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Text(
-                          'Add a New Post',
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(height: 10),
-                        TextField(
-                          decoration: const InputDecoration(
-                            labelText: 'Title',
-                            border: OutlineInputBorder(),
+                  return BlocProvider(
+                    create: (context) => post2Bloc(),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Text(
+                            'Add a New Post',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
                           ),
-                          onChanged: (value) {
-
-                          },
-                        ),
-                        const SizedBox(height: 10),
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: const Text('Submit'),
-                        ),
-                      ],
+                          const SizedBox(height: 10),
+                          TextField(
+                            controller: tittle,
+                            decoration: const InputDecoration(
+                              labelText: 'Title',
+                              border: OutlineInputBorder(),
+                            ),
+                            onChanged: (value) {
+                              tittle = TextEditingController(text: value);
+                            },
+                          ),
+                          const SizedBox(height: 10),
+                          BlocBuilder<post2Bloc, post2State>(
+                            builder: (context, state) {
+                              return ElevatedButton(
+                                onPressed: () {
+                                  post2Bloc().add(Postmethodevent(tittle: tittle.toString()));
+                                },
+                                child: const Text('Submit'),
+                              );
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 },
               );
             },
           ),
-          floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+          floatingActionButtonLocation:
+          FloatingActionButtonLocation.centerFloat,
           body: BlocBuilder<post2Bloc, post2State>(
             builder: (context, state) {
               return RefreshIndicator(
@@ -134,7 +145,8 @@ class Addandlistpost extends StatelessWidget {
                                           radius: 20,
                                           backgroundColor: Colors.blueAccent,
                                           child: Text(
-                                            "${state.getmethodentity.posts[index].id}",
+                                            "${state.getmethodentity
+                                                .posts[index].id}",
                                             style: const TextStyle(
                                                 color: Colors.white),
                                           ),
@@ -144,7 +156,8 @@ class Addandlistpost extends StatelessWidget {
                                           child: Text(
                                             state.getmethodentity.posts[index]
                                                 .title,
-                                            style: Theme.of(context)
+                                            style: Theme
+                                                .of(context)
                                                 .textTheme
                                                 .titleMedium,
                                           ),
@@ -156,8 +169,7 @@ class Addandlistpost extends StatelessWidget {
                                   ),
                                 );
                               },
-                              childCount:
-                              state.getmethodentity.posts.length,
+                              childCount: state.getmethodentity.posts.length,
                             ),
                           );
                         } else if (state is post2Error) {

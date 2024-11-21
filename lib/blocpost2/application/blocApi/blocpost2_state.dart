@@ -19,9 +19,11 @@ final class post2GETLoaded extends post2State {
 }
 ///
 final class post2POSTLoaded extends post2State {
+  post2POSTLoaded({required this.postmethodentity});
+  Postmethodentity postmethodentity;
   @override
   // TODO: implement props
-  List<Object?> get props => [];
+  List<Object?> get props => [postmethodentity];
 }
 
 final class post2Error extends post2State {
@@ -29,5 +31,5 @@ final class post2Error extends post2State {
   final String ermsg;
   @override
   // TODO: implement props
-  List<Object?> get props => [];
+  List<Object?> get props => [ermsg];
 }
