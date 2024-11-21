@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
           title: 'Flutter Demo',
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
-          home: Addandlistpostwapper()
+          home: Addandlistpost()
           // PostPage1(id: 1,)
           // UserDetails()
           // try1page()

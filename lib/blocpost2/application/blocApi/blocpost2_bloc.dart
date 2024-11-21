@@ -14,12 +14,20 @@ class post2Bloc extends Bloc<post2Event, post2State> {
   post2Bloc() : super(post2Initial()) {
     /// ..............................get method..........................///
     on<Getmethodevent>((event, emit) async {
-      // Emit loading state directly
       emit(post2Loading());
-      print("blocApi is loading");
+      print("Fetching data...");
       try {
         final data = await Getmethodusecases().Getdatafromdatasource();
         emit(post2GETLoaded(getmethodentity: data));
+
+        // await Future.delayed(Duration(seconds: 5),() async{
+        //   emit(post2Loading());
+        //   print("loading 2");
+        //   final datas = await Getmethodusecases().Getdatafromdatasource();
+        //   emit(post2GETLoaded(getmethodentity: datas));
+        //   print("loaded 2");
+        // },);
+
       } catch (e) {
         emit(post2Error(ermsg: e.toString()));
       }
@@ -27,20 +35,23 @@ class post2Bloc extends Bloc<post2Event, post2State> {
 
     ///..............................post method................................................///
     on<Postmethodevent>((event, emit) async {
-      emit(post2PostLoading());
-      print("blocpostApi is loading");
-
+      emit(post2Loading());
+      print("Posting data...");
       try {
         final data = await PostmethodUsecases(tittle: event.tittle).getdatafromdatasource();
         emit(post2POSTLoaded(postmethodentity: data));
 
-        print("Post successful, fetching updated data...");
-        final getData = await Getmethodusecases().Getdatafromdatasource();
-        emit(post2GETLoaded(getmethodentity: getData));
+        // await Future.delayed(Duration(seconds: 5),() async{
+        //   emit(post2Loading());
+        //   print("loading 2");
+        //   final datas = await Getmethodusecases().Getdatafromdatasource();
+        //   emit(post2GETLoaded(getmethodentity: datas));
+        //   print("loaded 2");
+        // },);
+
       } catch (e) {
         emit(post2Error(ermsg: e.toString()));
       }
     });
-
   }
 }
