@@ -18,6 +18,8 @@ final class post2GETLoaded extends post2State {
   List<Object?> get props => [getmethodentity];
 }
 ///
+
+final class post2PostLoading extends post2State {}
 final class post2POSTLoaded extends post2State {
   post2POSTLoaded({required this.postmethodentity});
   Postmethodentity postmethodentity;

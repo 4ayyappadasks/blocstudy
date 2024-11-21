@@ -5,6 +5,7 @@ import 'package:flutterblocstudey/blocpost2/domain/usecases/getmethod_usecases.d
 import 'package:meta/meta.dart';
 
 import '../../domain/entity/postmethod_entity.dart';
+import '../../domain/usecases/postmethod_usecases.dart';
 
 part 'blocpost2_event.dart';
 part 'blocpost2_state.dart';
@@ -13,29 +14,33 @@ class post2Bloc extends Bloc<post2Event, post2State> {
   post2Bloc() : super(post2Initial()) {
     /// ..............................get method..........................///
     on<Getmethodevent>((event, emit) async {
-      emit(post2Initial());
-      print("blocApi is initialized");
+      // Emit loading state directly
       emit(post2Loading());
       print("blocApi is loading");
-      try{
+      try {
         final data = await Getmethodusecases().Getdatafromdatasource();
-        emit(post2GETLoaded(getmethodentity:data));
-      }catch(e){
+        emit(post2GETLoaded(getmethodentity: data));
+      } catch (e) {
         emit(post2Error(ermsg: e.toString()));
       }
     });
+
     ///..............................post method................................................///
     on<Postmethodevent>((event, emit) async {
-      emit(post2Initial());
-      print("blocpostApi is initialized");
-      emit(post2Loading());
+      emit(post2PostLoading());
       print("blocpostApi is loading");
-      try{
-        final data = await Getmethodusecases().Getdatafromdatasource();
-        emit(post2POSTLoaded(postmethodentity:data));
-      }catch(e){
+
+      try {
+        final data = await PostmethodUsecases(tittle: event.tittle).getdatafromdatasource();
+        emit(post2POSTLoaded(postmethodentity: data));
+
+        print("Post successful, fetching updated data...");
+        final getData = await Getmethodusecases().Getdatafromdatasource();
+        emit(post2GETLoaded(getmethodentity: getData));
+      } catch (e) {
         emit(post2Error(ermsg: e.toString()));
       }
     });
+
   }
 }
