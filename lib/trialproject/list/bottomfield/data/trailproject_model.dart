@@ -1,4 +1,4 @@
-import 'package:flutterblocstudey/trialproject/domain/trailproject_entity.dart';
+import 'package:flutterblocstudey/trialproject/list/bottomfield/domain/trailproject_entity.dart';
 
 class Trialprojectmodel extends Trialprojectentity
 {
