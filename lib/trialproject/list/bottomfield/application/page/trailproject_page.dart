@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
 import '../../../listview/application/bloc/trailerprojectlist_bloc.dart';
 import '../bloc/trailproject_bloc.dart';
+
 
 class TrailprojectBottomsheetwrapper extends StatelessWidget {
   const TrailprojectBottomsheetwrapper({super.key});
@@ -11,7 +11,9 @@ class TrailprojectBottomsheetwrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => TrailprojectBloc(),
+      create: (context) => TrailprojectBloc(
+        trailerprojectlistBloc: context.read<TrailerprojectlistBloc>(),
+      ),
       child: TrailprojectBottomSheet(),
     );
   }
@@ -46,15 +48,13 @@ class TrailprojectBottomSheet extends StatelessWidget {
       },
       builder: (context, state) {
         return Container(
-          padding:
-          const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
           decoration: BoxDecoration(
             color: Colors.grey[200],
             border: Border(top: BorderSide(color: Colors.grey[300]!)),
           ),
           child: Row(
             children: [
-              // Text Field
               Expanded(
                 child: TextField(
                   controller: textController,
@@ -70,39 +70,34 @@ class TrailprojectBottomSheet extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 8.0),
-
-              // Send Button
               IconButton(
-                  onPressed: () {
-                    final message = textController.text.trim();
-                    FocusScope.of(context).unfocus();
-                    if (message.isNotEmpty) {
-                      context
-                          .read<TrailprojectBloc>()
-                          .add(Postmethodevent(message: message));
-                      textController.clear();
-                    } else {
-                      Fluttertoast.showToast(
-                        msg: "Message cannot be empty!",
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.BOTTOM,
-                        backgroundColor: Colors.red,
-                        textColor: Colors.white,
-                      );
-                    }
-                  },
-                  icon: state is TrailprojectInitial ||
-                      state is Trailprojectloaded ||
-                      state is Trailprojecterror
-                      ? Icon(
-                    Icons.send,
-                    color: Color(0xFF4B00C0),
-                  )
-                      : Center(
-                    child: CircularProgressIndicator(
-                      color:  Color(0xFF4B00C0),
-                    ),
-                  )),
+                onPressed: () {
+                  final message = textController.text.trim();
+                  FocusScope.of(context).unfocus();
+                  if (message.isNotEmpty) {
+                    context
+                        .read<TrailprojectBloc>()
+                        .add(Postmethodevent(message: message));
+                    textController.clear();
+                  } else {
+                    Fluttertoast.showToast(
+                      msg: "Message cannot be empty!",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      backgroundColor: Colors.red,
+                      textColor: Colors.white,
+                    );
+                  }
+                },
+                icon: state is Trailprojectloading
+                    ? const CircularProgressIndicator(
+                        color: Color(0xFF4B00C0),
+                      )
+                    : const Icon(
+                        Icons.send,
+                        color: Color(0xFF4B00C0),
+                      ),
+              ),
             ],
           ),
         );

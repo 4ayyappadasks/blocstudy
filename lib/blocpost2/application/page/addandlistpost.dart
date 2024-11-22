@@ -10,11 +10,12 @@ class Addandlistpost extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) {
-        final bloc = post2Bloc();
-        bloc.add(Getmethodevent()); // Fetch initial data
-        return bloc;
-      },
+      create: (context) => post2Bloc()..add(Getmethodevent()),
+      // create: (context) {
+      //   final bloc = post2Bloc();
+      //   bloc.add(Getmethodevent()); // Fetch initial data
+      //   return bloc;
+      // },
       child: SafeArea(
         child: Scaffold(
           body: BlocBuilder<post2Bloc, post2State>(
