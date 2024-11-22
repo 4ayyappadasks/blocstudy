@@ -24,8 +24,6 @@ class Trialprojectdatasourceimpl implements Trialprojectdatasource{
       if(response.statusCode==201)
         {
           log("success response status code : ${response.statusCode} , with response : ${response.body}");
-          final bloc = TrailerprojectlistBloc();
-          bloc.add(Getmethodevent());
           return Trialprojectmodel.fromJson(json.decode(response.body));
         }
       else
