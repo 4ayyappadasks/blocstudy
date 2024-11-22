@@ -5,24 +5,17 @@ import 'package:flutterblocstudey/trialproject/list/bottomfield/application/page
 import '../../../bottomfield/application/bloc/trailproject_bloc.dart';
 import '../bloc/trailerprojectlist_bloc.dart';
 
-
 class TrailerprojectlistPageWraper extends StatelessWidget {
   const TrailerprojectlistPageWraper({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<TrailerprojectlistBloc>(
-          create: (context) => TrailerprojectlistBloc()..add(Getmethodevent()),
+    return BlocProvider(
+      create: (context) => TrailerprojectlistBloc()
+        ..add(
+          Getmethodevent(),
         ),
-        BlocProvider<TrailprojectBloc>(
-          create: (context) => TrailprojectBloc(
-            trailerprojectlistBloc: context.read<TrailerprojectlistBloc>(),
-          ),
-        ),
-      ],
-      child: const TrailerprojectlistPage(),
+      child: TrailerprojectlistPage(),
     );
   }
 }
@@ -101,5 +94,3 @@ class TrailerprojectlistPage extends StatelessWidget {
     );
   }
 }
-
-
