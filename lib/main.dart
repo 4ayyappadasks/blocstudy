@@ -5,8 +5,11 @@ import 'package:flutterblocstudey/bloclib4/application/page.dart';
 import 'package:flutterblocstudey/bloclib5/application/page/userdetails.dart';
 import 'package:flutterblocstudey/blocpost/application/page/postpage.dart';
 import 'package:flutterblocstudey/blocpost2/application/page/addandlistpost.dart';
+import 'package:flutterblocstudey/bloctest1/ui/ui1.dart';
+import 'package:flutterblocstudey/bloctest2/ui/bloctest2.dart';
 import 'package:flutterblocstudey/trialproject/list/bottomfield/application/page/trailproject_page.dart';
 import 'package:flutterblocstudey/trialproject/list/listview/application/page/TrailerprojectList_page.dart';
+import 'package:flutterblocstudey/webvewtest/webviewtest.dart';
 import 'package:provider/provider.dart';
 
 import 'bloclib/application/core/Services/theme_services.dart';
@@ -37,7 +40,10 @@ class MyApp extends StatelessWidget {
           title: 'Flutter Demo',
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
-          home:TrailerprojectlistPageWraper()
+          home:Webview()
+          // Bloctest2Wrapper()
+          // Bloctest1Wrapper()
+          // TrailerprojectlistPageWraper()
           // Addandlistpost()
           // PostPage1(id: 1,)
           // UserDetails()

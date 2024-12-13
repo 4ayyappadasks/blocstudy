@@ -4,7 +4,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import '../../../listview/application/bloc/trailerprojectlist_bloc.dart';
 import '../bloc/trailproject_bloc.dart';
 
-
 class TrailprojectBottomsheetwrapper extends StatelessWidget {
   const TrailprojectBottomsheetwrapper({super.key});
 
@@ -49,9 +48,9 @@ class TrailprojectBottomSheet extends StatelessWidget {
       builder: (context, state) {
         return Container(
           padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
-          decoration: BoxDecoration(
-            color: Colors.grey[200],
-            border: Border(top: BorderSide(color: Colors.grey[300]!)),
+          decoration: const BoxDecoration(
+            color: Color(0xEEEEEEFF),
+            border: Border(top: BorderSide(color: Color(0xFF4B00C0))),
           ),
           child: Row(
             children: [

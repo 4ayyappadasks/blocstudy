@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterblocstudey/trialproject/list/bottomfield/application/page/trailproject_page.dart';
-
-import '../../../bottomfield/application/bloc/trailproject_bloc.dart';
 import '../bloc/trailerprojectlist_bloc.dart';
 
 class TrailerprojectlistPageWraper extends StatelessWidget {
@@ -15,7 +13,7 @@ class TrailerprojectlistPageWraper extends StatelessWidget {
         ..add(
           Getmethodevent(),
         ),
-      child: TrailerprojectlistPage(),
+      child: const TrailerprojectlistPage(),
     );
   }
 }
@@ -88,7 +86,7 @@ class TrailerprojectlistPage extends StatelessWidget {
               },
             ),
           ),
-          TrailprojectBottomsheetwrapper(),
+          const TrailprojectBottomsheetwrapper(),
         ],
       ),
     );
